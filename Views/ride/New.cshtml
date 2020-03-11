@@ -1,0 +1,41 @@
+@model ride
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Plan your ride</h1>
+<h3>User: @ViewBag.User.FirstName
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="Create" asp-controller="ride">
+
+        <label asp-for="ridename"></label>
+        <input asp-for="ridename"><html><br>
+
+        <label asp-for="kml_url"></label>
+        <input asp-for="kml_url"><html><br>
+        
+            
+        <label asp-for="ridedesc"></label>
+        <input asp-for="ridedesc"><html><br>
+
+        <label asp-for="ridecity"></label>
+        <input asp-for="ridecity"><html>
+
+        <input type="hidden" asp-for="UserId" value="@ViewBag.User.UserId">
+        <input type="submit" value="SUBMIT ride" class="btn btn-outline-warning">
+
+</form>
+
+
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+@model List<ride>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PoOpOo</title>
+</head>
+<body>
+    <h1>Welcome @ViewBag.User.FirstName</h1>
+    <a asp-action="LogOut" asp-controller="Home" class="btn btn-danger">LogOut</a>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th>ride</th>
+            <th>city</th>
+            <th>url</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach(var w in @Model)
+            {
+                <tr>
+                    <td><a asp-action="Show" asp-controller="ride" asp-route-rideId="@w.rideId"> @w.ridename</a></td>
+                    <td>@w.ridecity</td>
+                    <td>@w.kml_url</td>
+                    @if(ViewBag.User.UserId == @w.UserId)
+                    {
+                        <td><a asp-action="destroy" asp-controller="ride" asp-route-rideId="@w.rideId">DELETE</a></td>
+                    }
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <a class="btn btn-danger" asp-action="New" asp-controller="ride">Create ride</a>
+</body>
+</html>

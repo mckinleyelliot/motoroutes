@@ -1,0 +1,52 @@
+@model ride
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #map {
+        height: 400px;
+    }
+</style>
+<body>
+
+<h1>@Model.ridename info</h1> <br>
+<a asp-action="Dashboard" asp-controller="ride" class="btn btn-warning">Dashboard</a>
+<a asp-action="LogOut" asp-controller="Home" class="btn btn-danger">LogOut</a>
+<br>
+<h2>WHERE: @Model.ridecity</h2>
+<h2>comments (future)</h2>
+<h3> @ViewBag.ApiKey </h3>
+
+    <div id="map"></div>
+
+
+<script>
+        var src = 'http://drive.google.com/uc?id=1QO4lBjGM6Q8WWMrc6LJ3eb6SFrI1uqwF';
+        function myMap() {  
+        var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 41.100, lng: -89.496},
+        zoom: 7
+        });
+        var kmlLayer = new google.maps.KmlLayer(src, {
+          suppressInfoWindows: true,
+          preserveViewport: false,
+          map: map
+        });
+        kmlLayer.addListener('click', function(event) {
+          var content = event.featureData.infoWindowHtml;
+          var testimonial = document.getElementById('capture');
+          testimonial.innerHTML = content;
+        });
+        }
+</script>
+<script async defer src=@ViewBag.ApiKey></script>
+
+
+
+</body>
+</html>
