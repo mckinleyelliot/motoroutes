@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/motoroutes.csproj",
+  "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/motoroutes.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2961,63 +2961,68 @@
   "RootNamespace": "motoroutes",
   "Documents": [
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Shared/_Layout.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Shared/Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Shared/_CookieConsentPartial.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Shared/_CookieConsentPartial.cshtml",
       "TargetPath": "Views\\Shared\\_CookieConsentPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/ride/Show.cshtml",
-      "TargetPath": "Views\\ride\\Show.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/ride/Dashboard.cshtml",
+      "TargetPath": "Views\\ride\\Dashboard.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Home/Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Home/Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/ride/New.cshtml",
-      "TargetPath": "Views\\ride\\New.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/_ViewStart.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/Home/SignIn.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Home/SignIn.cshtml",
       "TargetPath": "Views\\Home\\SignIn.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/elliotmckinley/Desktop/motoroutes/Views/ride/Dashboard.cshtml",
-      "TargetPath": "Views\\ride\\Dashboard.cshtml",
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/ride/New.cshtml",
+      "TargetPath": "Views\\ride\\New.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/ride/NewComment.cshtml",
+      "TargetPath": "Views\\ride\\NewComment.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Home/Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/Shared/Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/Views/ride/Show.cshtml",
+      "TargetPath": "Views\\ride\\Show.cshtml",
       "FileKind": "mvc"
     }
   ],

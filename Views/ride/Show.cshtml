@@ -9,27 +9,65 @@
 </head>
 <style>
     #map {
-        height: 400px;
+        height: 300px;
+        width: 500px;
+    }
+    #commentdiv {
+      height: 75px;
+      width: 200px;
+      background-color: grey;
+      margin: 5px;
     }
 </style>
 <body>
-
-<h1>@Model.ridename info</h1> <br>
-<a asp-action="Dashboard" asp-controller="ride" class="btn btn-warning">Dashboard</a>
-<a asp-action="LogOut" asp-controller="Home" class="btn btn-danger">LogOut</a>
 <br>
-<h2>WHERE: @Model.ridecity</h2>
-<h2>comments (future)</h2>
-<h3> @ViewBag.ApiKey </h3>
+<a asp-action="Dashboard" asp-controller="ride" class="btn btn-warning">Home</a>
 
-    <div id="map"></div>
+
+  <a asp-action="edit" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-warning">Edit this ride</a>
+  <a asp-action="destroy" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-danger">DELETE this ride</a>
+
+<br>
+<h1>@Model.ridename info</h1> <br>
+<h2>WHERE: @Model.ridecity, @Model.ridestate</h2>
+<h2>Description: @Model.ridedesc</h2>
+
+<div id="map"></div>
+
+
+<div>
+    <h6>Comments:</h6>
+    @if (@Model.comments.Count == 0)
+      {
+    <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Be the first to leave a comment</a>
+
+      }
+      else {
+          <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Leave a comment</a>
+          <br>
+          @foreach (var r in @Model.comments)
+          {
+              <div id="commentdiv">
+              <p>Comment: @r.commentcontent</p>
+              <p>Creator: @r.commentcreator</p>
+              </div>
+              @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
+              {
+                <a asp-action="LogOut" asp-controller="Home" class="btn btn-warning">Delete</a>
+              }
+          }
+
+      }
+</div>
+
+
+
 
 
 <script>
-        var src = 'http://drive.google.com/uc?id=1QO4lBjGM6Q8WWMrc6LJ3eb6SFrI1uqwF';
+        var src = '@Model.kml_url';
         function myMap() {  
         var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 41.100, lng: -89.496},
         zoom: 7
         });
         var kmlLayer = new google.maps.KmlLayer(src, {

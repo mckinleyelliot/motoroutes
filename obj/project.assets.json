@@ -12348,11 +12348,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/elliotmckinley/Desktop/motoroutes/motoroutes.csproj",
+      "projectUniqueName": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/motoroutes.csproj",
       "projectName": "motoroutes",
-      "projectPath": "/Users/elliotmckinley/Desktop/motoroutes/motoroutes.csproj",
+      "projectPath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/motoroutes.csproj",
       "packagesPath": "/Users/elliotmckinley/.nuget/packages/",
-      "outputPath": "/Users/elliotmckinley/Desktop/motoroutes/obj/",
+      "outputPath": "/Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

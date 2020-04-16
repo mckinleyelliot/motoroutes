@@ -35,8 +35,6 @@ namespace motoroutes.Models
         [DataType(DataType.Password)]
         [NotMapped]
         public string ComparePassword {get;set;}
-        
-        public List<ride> createdrides {get;set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;

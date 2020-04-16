@@ -24,16 +24,21 @@ namespace motoroutes.Controllers
         [HttpGet("")]
         public IActionResult Dashboard()
         {
-            if(HttpContext.Session.GetString("UserEmail") == null)
-            {
-                return RedirectToAction("LogOut", "Home");
-            }
-            else{
-                User userInDb = dbContext.Users.Include( u => u.createdrides).FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
+                if(HttpContext.Session.GetString("UserEmail") == null)
+            {   
+                HttpContext.Session.SetString("UserEmail", "temp@gmail.com");
+                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
                 ViewBag.User = userInDb;
-
-                List<ride> allrides = dbContext.rides.ToList();
-
+                List<ride> allrides = dbContext.rides.Include( w => w.comments).ToList();
+                ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
+                return View(allrides);
+            }
+            else 
+            {
+                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
+                ViewBag.User = userInDb;
+                List<ride> allrides = dbContext.rides.Include( w => w.comments).ToList();
+                ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
                 return View(allrides);
             }
         }
@@ -41,26 +46,14 @@ namespace motoroutes.Controllers
         [HttpGet("new")]
         public IActionResult New()
         {
-            if(HttpContext.Session.GetString("UserEmail") == null)
-            {
-                return RedirectToAction("LogOut", "Home");
-            }
-            else
-            {
-                User userInDb = dbContext.Users.Include( u => u.createdrides).FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                ViewBag.User = userInDb;
                 return View();
-            }
         }
+
+
+
         [HttpPost("create")]
         public IActionResult Create(ride plan)
         {
-            if(HttpContext.Session.GetString("UserEmail") == null)
-            {
-                return RedirectToAction("LogOut", "Home");
-            }
-            else
-            {
                 if(ModelState.IsValid)
                 {
                     dbContext.rides.Add(plan);
@@ -69,25 +62,54 @@ namespace motoroutes.Controllers
                 }
                 else
                 {
-                    User userInDb = dbContext.Users.Include( u => u.createdrides).FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                    ViewBag.User = userInDb;
-                    return View("New" );
+                    return View("New");
                 }
-            }
         }
+
+        [HttpGet("{rideId}/newcomment")]
+        public IActionResult Newcomment(int rideId)
+        {
+                return View();
+        }
+
+        [HttpPost("createcomment")]
+        public IActionResult Createcomment(int rideId, comment comment123)
+        {
+
+                if(ModelState.IsValid)
+                {
+                    comment newcomment = new comment ();
+                    newcomment.rideId = rideId;
+                    dbContext.comments.Add(comment123);
+                    dbContext.SaveChanges();
+                    return Redirect($"show/{comment123.rideId}");
+                }
+                else
+                {
+                    return View("NewComment");
+                }
+        }
+
+
+
         [HttpGet("show/{rideId}")]
         public IActionResult Show(int rideId)
         {
-            if(HttpContext.Session.GetString("UserEmail") == null)
-            {
-                return RedirectToAction("LogOut", "Home");
+                if(HttpContext.Session.GetString("UserEmail") == null)
+            {  
+                HttpContext.Session.SetString("UserEmail", "temp@gmail.com");
+                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
+                ViewBag.User = userInDb;
+                ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
+                ride rideinfo = dbContext.rides.Include( w => w.comments ).FirstOrDefault (w => w.rideId == rideId);
+                return View(rideinfo);
             }
             else 
             {
-                User userInDb = dbContext.Users.Include( u => u.createdrides).FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
+                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
                 ViewBag.User = userInDb;
                 ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
-                ride rideinfo = dbContext.rides.FirstOrDefault (w => w.rideId == rideId);
+                ride rideinfo = dbContext.rides.Include( w => w.comments ).FirstOrDefault (w => w.rideId == rideId);
                 return View(rideinfo);
             }
         }
@@ -96,17 +118,10 @@ namespace motoroutes.Controllers
         [HttpGet("destroy/{rideId}")]
         public IActionResult Destroy (int rideId)
         {
-            if(HttpContext.Session.GetString("UserEmail") == null)
-            {
-                return RedirectToAction("LogOut", "Home");
-            }
-            else 
-            {
                 ride remove = dbContext.rides.FirstOrDefault(w => w.rideId == rideId);
                 dbContext.rides.Remove(remove);
                 dbContext.SaveChanges();
                 return RedirectToAction("Dashboard");
-            }
         }
 
 

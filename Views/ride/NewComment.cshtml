@@ -1,0 +1,28 @@
+@model comment
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a new comment</h1>
+    <form method="post" asp-action="Createcomment" asp-controller="ride">
+
+        <label asp-for="commentcontent"></label>
+        <input asp-for="commentcontent">
+
+        <label asp-for="commentcreator"></label>
+        <input asp-for="commentcreator">
+
+        <input type="hidden" asp-for="rideId">
+        <input type="submit" value="SUBMIT comment" class="btn btn-outline-warning">
+</form>
+
+    <div asp-validation-summary="All"></div>
+
+
+</body>
+</html>

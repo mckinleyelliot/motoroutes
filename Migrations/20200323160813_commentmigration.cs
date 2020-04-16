@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace motoroutes.Migrations
 {
-    public partial class secondmigrationcomments : Migration
+    public partial class commentmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,7 @@ namespace motoroutes.Migrations
                     kml_url = table.Column<string>(nullable: false),
                     ridename = table.Column<string>(nullable: false),
                     ridecity = table.Column<string>(nullable: false),
+                    ridestate = table.Column<string>(nullable: false),
                     ridedesc = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
@@ -52,25 +53,28 @@ namespace motoroutes.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "comment",
+                name: "comments",
                 columns: table => new
                 {
                     commentId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
-                    rideId = table.Column<int>(nullable: false)
+                    rideId = table.Column<int>(nullable: false),
+                    commentcontent = table.Column<string>(maxLength: 200, nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_comment", x => x.commentId);
+                    table.PrimaryKey("PK_comments", x => x.commentId);
                     table.ForeignKey(
-                        name: "FK_comment_Users_UserId",
+                        name: "FK_comments_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_comment_rides_rideId",
+                        name: "FK_comments_rides_rideId",
                         column: x => x.rideId,
                         principalTable: "rides",
                         principalColumn: "rideId",
@@ -78,13 +82,13 @@ namespace motoroutes.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_comment_UserId",
-                table: "comment",
+                name: "IX_comments_UserId",
+                table: "comments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_comment_rideId",
-                table: "comment",
+                name: "IX_comments_rideId",
+                table: "comments",
                 column: "rideId");
 
             migrationBuilder.CreateIndex(
@@ -96,7 +100,7 @@ namespace motoroutes.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "comment");
+                name: "comments");
 
             migrationBuilder.DropTable(
                 name: "rides");

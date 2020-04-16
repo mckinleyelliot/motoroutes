@@ -9,8 +9,8 @@ using motoroutes.Models;
 namespace motoroutes.Migrations
 {
     [DbContext(typeof(HomeContext))]
-    [Migration("20200310163204_secondmigrationcomments")]
-    partial class secondmigrationcomments
+    [Migration("20200323160813_commentmigration")]
+    partial class commentmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,15 @@ namespace motoroutes.Migrations
                     b.Property<int>("commentId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<DateTime>("UpdatedAt");
+
                     b.Property<int>("UserId");
+
+                    b.Property<string>("commentcontent")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.Property<int>("rideId");
 
@@ -60,7 +68,7 @@ namespace motoroutes.Migrations
 
                     b.HasIndex("rideId");
 
-                    b.ToTable("comment");
+                    b.ToTable("comments");
                 });
 
             modelBuilder.Entity("motoroutes.Models.ride", b =>
@@ -85,6 +93,9 @@ namespace motoroutes.Migrations
                     b.Property<string>("ridename")
                         .IsRequired();
 
+                    b.Property<string>("ridestate")
+                        .IsRequired();
+
                     b.HasKey("rideId");
 
                     b.HasIndex("UserId");
@@ -94,20 +105,20 @@ namespace motoroutes.Migrations
 
             modelBuilder.Entity("motoroutes.Models.comment", b =>
                 {
-                    b.HasOne("motoroutes.Models.User", "commentor")
-                        .WithMany()
+                    b.HasOne("motoroutes.Models.User")
+                        .WithMany("madecomment")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("motoroutes.Models.ride", "commentsss")
-                        .WithMany("commentlist")
+                    b.HasOne("motoroutes.Models.ride")
+                        .WithMany("madecomments")
                         .HasForeignKey("rideId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("motoroutes.Models.ride", b =>
                 {
-                    b.HasOne("motoroutes.Models.User", "Creator")
+                    b.HasOne("motoroutes.Models.User")
                         .WithMany("createdrides")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

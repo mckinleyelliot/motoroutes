@@ -19,15 +19,15 @@ namespace motoroutes.Models
         [Required(ErrorMessage="Please list a city near the ride")]
         [Display(Name="ridecity ")]
         public string ridecity {get;set;}
+        
+        [Required(ErrorMessage="Please list a state near the ride")]
+        [Display(Name="ridestate ")]
+        public string ridestate {get;set;}
 
 
         [Display(Name="ridedesc: ")]
         public string ridedesc {get;set;}
-
-        public int UserId {get;set;}
-
-        public User Creator {get;set;}
-        public List<comment> commentlist {get;set;}
+        public List<comment> comments {get;set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;

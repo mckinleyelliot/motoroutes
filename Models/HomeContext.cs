@@ -7,5 +7,6 @@ namespace motoroutes.Models
         public HomeContext(DbContextOptions options) : base(options){}
         public DbSet<User> Users { get;set;}
         public DbSet<ride> rides {get;set;}
+        public DbSet<comment> comments {get;set;}
     }
 }
