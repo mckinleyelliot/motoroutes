@@ -9,10 +9,9 @@
     <title>PoOpOo</title>
 </head>
 <style>
-    #map {
-        height: 300px;
-        width: 500px;
-    }
+
+
+
 </style>
 <body>
     
@@ -46,35 +45,65 @@
                     <td>@w.ridestate</td>
                     <td>@w.comments.Count</td>
                     <td><a asp-action="destroy" asp-controller="ride" asp-route-rideId="@w.rideId">DELETE</a></td>
-                    <td>
-                    <div id="map"></div>
-                    </td>
-                    <script>
-        var src = '@w.kml_url';
-        function myMap() {  
-        var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7
-        });
-        var kmlLayer = new google.maps.KmlLayer(src, {
-          suppressInfoWindows: true,
-          preserveViewport: false,
-          map: map
-        });
-        kmlLayer.addListener('click', function(event) {
-          var content = event.featureData.infoWindowHtml;
-          var testimonial = document.getElementById('capture');
-          testimonial.innerHTML = content;
-        });
-        }
-        </script>
                 </tr>
-
             }
+
 
         </tbody>
     </table>
+            @foreach(var M in @Model)
+        {
+            <div id="@M.ridename" style="width: 500px; height: 300px;"></div>
+            <div>
+            <script>
+            var src = '@M.kml_url';
+            function myMap() {  
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7
+            });
+            var kmlLayer = new google.maps.KmlLayer(src, {
+            suppressInfoWindows: true,
+            preserveViewport: false,
+            map: map
+            });
+            kmlLayer.addListener('click', function(event) {
+            var content = event.featureData.infoWindowHtml;
+            var testimonial = document.getElementById('capture');
+            testimonial.innerHTML = content;
+            });
+            }
+            </script>
+            </div>
+        }
     <script async defer src=@ViewBag.ApiKey></script>
     <a class="btn btn-danger" asp-action="New" asp-controller="ride">Create ride</a>
 </body>
 </html>
 
+
+
+
+            @foreach(var M in @Model)
+        {
+            <div id="map" style="width: 500px; height: 300px;"></div>
+            <div>
+            <script>
+            var src = '@M.kml_url';
+            function myMap() {  
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7
+            });
+            var kmlLayer = new google.maps.KmlLayer(src, {
+            suppressInfoWindows: true,
+            preserveViewport: false,
+            map: map
+            });
+            kmlLayer.addListener('click', function(event) {
+            var content = event.featureData.infoWindowHtml;
+            var testimonial = document.getElementById('capture');
+            testimonial.innerHTML = content;
+            });
+            }
+            </script>
+            </div>
+        }

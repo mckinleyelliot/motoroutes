@@ -8,15 +8,43 @@
     <title>Document</title>
 </head>
 <style>
+  * {
+    @* outline: thin dotted pink; *@
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #mapdiv {
+    height: 300px;
+    width: 500px;
+    display: inline-block;
+  }
     #map {
-        height: 300px;
-        width: 500px;
+        height: 100%;
     }
-    #commentdiv {
-      height: 75px;
+    #capturediv {
+      height: 300px;
+      width: 500px;
+      display: inline;
+      float: right;
+    }
+    #capture {
+       height: 100%;
+       border: thin solid black;
+    }
+
+    .commentdiv {
+      height: 100px;
       width: 200px;
-      background-color: grey;
+      background-color: black;
+      color: red;
       margin: 5px;
+      padding: 2px;
+      display: inline-block;
+float: left;
+      margin-bottom: 100px;
+    }
+    #commentbutton {
+      display: block;
+      margin-bottom: 20px;
     }
 </style>
 <body>
@@ -29,32 +57,35 @@
 
 <br>
 <h1>@Model.ridename info</h1> <br>
+<div id="mapdiv">
+  <div id="map"></div>
+</div>
+
+<div id="capturediv">
+  <div id="capture"></div>
+</div>
 <h2>WHERE: @Model.ridecity, @Model.ridestate</h2>
 <h2>Description: @Model.ridedesc</h2>
-
-<div id="map"></div>
 
 
 <div>
     <h6>Comments:</h6>
     @if (@Model.comments.Count == 0)
       {
-    <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Be the first to leave a comment</a>
-
+        <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Be the first to leave a comment</a>
       }
       else {
-          <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Leave a comment</a>
-          <br>
+          <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning" id="commentbutton">Leave a comment</a>
           @foreach (var r in @Model.comments)
           {
-              <div id="commentdiv">
-              <p>Comment: @r.commentcontent</p>
-              <p>Creator: @r.commentcreator</p>
-              </div>
-              @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-              {
-                <a asp-action="LogOut" asp-controller="Home" class="btn btn-warning">Delete</a>
-              }
+            <div class="commentdiv">
+                <p>Comment: @r.commentcontent</p>
+                <p>Creator: @r.commentcreator</p>
+                  @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
+                  {
+                    <a asp-action="LogOut" asp-controller="Home" class="btn btn-warning">Delete</a>
+                  }
+            </div>
           }
 
       }
@@ -65,8 +96,8 @@
 
 
 <script>
-        var src = '@Model.kml_url';
-        function myMap() {  
+    var src = '@Model.kml_url';
+    function myMap() {  
         var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7
         });
@@ -75,16 +106,17 @@
           preserveViewport: false,
           map: map
         });
+        
         kmlLayer.addListener('click', function(event) {
           var content = event.featureData.infoWindowHtml;
           var testimonial = document.getElementById('capture');
           testimonial.innerHTML = content;
         });
-        }
+
+    }
+        
+        
 </script>
 <script async defer src=@ViewBag.ApiKey></script>
-
-
-
 </body>
 </html>
