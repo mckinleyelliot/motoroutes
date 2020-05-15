@@ -53,7 +53,6 @@
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.g.cshtml.cs
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/Home/SignIn.g.cshtml.cs
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/ride/Dashboard.g.cshtml.cs
-/Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/ride/New.g.cshtml.cs
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/ride/NewComment.g.cshtml.cs
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/ride/Show.g.cshtml.cs
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.g.cshtml.cs
@@ -68,3 +67,5 @@
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/motoroutes.dll
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/motoroutes.pdb
 /Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/motoroutes.csproj.CopyComplete
+/Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/Home/Info.g.cshtml.cs
+/Users/elliotmckinley/Desktop/motoroutesNoUsers/obj/Debug/netcoreapp2.2/Razor/Views/ride/Newinfo.g.cshtml.cs

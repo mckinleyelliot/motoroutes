@@ -5,94 +5,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Show Ride</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <style>
+  #wrapper {
+    width: 100%;
+    margin: 0px;
+  }
+  body {
+    background-color: #293241;
+  }
   * {
     @* outline: thin dotted pink; *@
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  nav {
+    color: #ebebe3;
+    background-color: #293241;
+    width: 100%;
+  }
+  #Header {
+    font-size: 35pt;
+  }
+  #HeaderSub {
+    margin-top: -2%;
+    padding: 1%;
+  }
+
+  #maptop {
+    background-color: #3d5a80;
+    color: whitesmoke;
+    width: 100%;
+    height: auto;
+    padding: 2%;
+    margin-top: -22px;
+    margin-bottom: 0;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 25pt;
+  }
+
   #mapdiv {
-    height: 300px;
-    width: 500px;
+    height: 400px;
+    width: 100%;
     display: inline-block;
   }
-    #map {
-        height: 100%;
+
+  #map {
+      height: 100%;
+      margin-bottom: -6px;
     }
-    #capturediv {
-      height: 300px;
-      width: 500px;
-      display: inline;
-      float: right;
+
+  #infodiv {
+      display: block;
+      overflow: auto;
+      background-color: #3d5a80;
+      color: whitesmoke;
+      border: 4px solid #98c1d9;
+      border-radius: 10px;
+      padding: 2.5%;
+      height: 57%;
+      margin-top: 3%;
+      margin-right: 3%;
+      margin-left: 3%;
+    }
+  #capturediv {
+      display: block;
+      overflow: auto;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 34%;
+      width: 94%;
+      margin-top: 3%;
+      margin-bottom: 3%;
+      margin-right: 3%;
+      margin-left: 3%;
+      border: 4px solid #98c1d9;
+      border-radius: 10px;
+      color: whitesmoke;
+      padding: 2.5%;
+      text-align: center;
+      font-size: 16pt;
+    }
+    #infolink {
+      font-size: 16pt;
+      color: black;
+    }
+    #capturecontainer {
+      text-align: center;
+      width: 95%;
+      margin: 2.5%;
+      height: auto;
     }
     #capture {
-       height: 100%;
-       border: thin solid black;
+      overflow: auto;
+      height: 100%;
+    }
+    #capinfodiv {
+      display: inline-block;
+      background-color: #3d5a80;
+      height: 400px;
+      width: 40%;
+      position: relative;
+      overflow: auto;
+    }
+    #capinfodiv .p1 {
+    font-size: 18pt;
+    display: inline;
+    color: whitesmoke;
+    }
+    #capinfodiv .h2 {
+      font-size: 14pt;
+      display: inline;
+      color: whitesmoke;
+      margin: 2.5%;
     }
 
-    .commentdiv {
-      height: 100px;
-      width: 200px;
-      background-color: black;
-      color: red;
-      margin: 5px;
-      padding: 2px;
+
+
+    #commentdiv {
+      display: inline;
+      height: 400px;
+      overflow-x: auto;
+      width: 60%;
+      background-color: #3d5a80;
+      color: whitesmoke;
+      float: right;
+      padding: 1%;
+    }
+    
+    .eachcomment {
+      display:
+      height: auto;
+      width: 98%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #98c1d9;
+      color: #293241;
+      display: inline;
+      float: left;
+      overflow-y: auto;
+      border-radius: 10px;
+      padding: 1%;
+    }
+    .commentbutton {
       display: inline-block;
-float: left;
-      margin-bottom: 100px;
+      margin-top: 1%;
+      margin-bottom: 4%;
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 10px 40px;
+      text-align: center;
+      width: 50%;
+      font-size: 14pt;
+      transition-duration: .4s;
+      cursor: pointer;
+      border-radius: 15px;
+      color: whitesmoke; 
+      background-color: #ee6c4d;
     }
-    #commentbutton {
-      display: block;
-      margin-bottom: 20px;
+    .commentbutton:hover {
+      background-color: #e0fbfc;
+      color: #293241;
     }
+    .comment-triangle {
+      display: flex;
+      margin-left: 75%;
+      margin-bottom: 1%;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 20px solid #98c1d9;
+    }
+
+    /* The CONTACT Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,.7); /* Black w/ opacity */
+    }
+    /* Modal Content */
+    .modal-content {
+    background-color: lightgrey;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    }
+    /* The Close Button */
+    .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    }
+    
+    footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: auto;
+        background-color: 	#293241;
+        color: white;
+        padding: 10px;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+    #footerdiv {
+    }
+    .FooterLink1 {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        background-color: #222831;
+        display: block;
+        width: 200px;
+        text-align: center;
+    }
+
+
 </style>
 <body>
+
+<nav>
+    <div class="w3-bar">
+        <span id="Header" class="w3-bar-item  w3-padding-14">RouteShare</span>
+        <a href="#" id="myBtn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Contact</a>
+        <a style="text-decoration: line-through" asp-action="SignIn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink" asp-controller="Home">LogIn</a>
+        <a asp-action="Info" asp-controller="home" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Info</a>
+        <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Home</a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-padding-16 NavLink" onclick="myFunction()">&#9776;</a>
+    </div>
+        <div id="HeaderSub">A simple web app to share/view KML files</div>
+    <div id="dropdown" class="w3-bar-block w3-hide w3-hide-large NavLink">
+        <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button NavLink">Home</a>
+        <a asp-action="Info" asp-controller="home" class="w3-bar-item w3-button NavLink">Info</a>
+        <a asp-action="SignIn" class="w3-bar-item w3-button NavLink" asp-controller="Home" style="text-decoration: line-through">LogIn</a>
+        <a href="#" id="myBtnsml" class="w3-bar-item w3-button NavLink">Contact</a>
+    </div>
+</nav>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-div">
+            <span class="close">&otimes;</span>
+            <h6>This web app was created by:</h6>
+            <h2>Elliot McKinley</h2>
+            <p><i class="fa fa-map-marker fa-fw w3-text-white w3-margin-right"></i> Chicago, US</p>
+            <p><i class="fa fa-phone fa-fw w3-text-white w3-margin-right"></i> 773-562-4265</p>
+            <i class="fa fa-envelope fa-fw w3-text-white w3-margin-right"> </i><a href="mailto:mckinleyelliot@gmail.com">ElliotMcKinley@gmail.com</a><p> </p>
+            <i class="fa fa-linkedin-square fa-fw w3-text-white w3-margin-right"></i><a href="https://www.linkedin.com/in/elliot-mckinley">LinkedIn Profile</a>
+        </div>
+    </div>
+</div>
+
 <br>
-<a asp-action="Dashboard" asp-controller="ride" class="btn btn-warning">Home</a>
 
+<div id="maptop">
+<m1>@Model.ridename</m1>
+</div>
 
-  <a asp-action="edit" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-warning">Edit this ride</a>
-  <a asp-action="destroy" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-danger">DELETE this ride</a>
-
-<br>
-<h1>@Model.ridename info</h1> <br>
 <div id="mapdiv">
-  <div id="map"></div>
+    <div id="map"></div>
 </div>
 
-<div id="capturediv">
-  <div id="capture"></div>
+<div id="capinfodiv">
+  <div id="infodiv">
+    <h2 class="h2">Ride Name:</h2> <p class="p1"> @Model.ridename</p><br>
+    <h2 class="h2">City:</h2> <p class="p1"> @Model.ridecity, @Model.ridestate</p><br>
+    <h2 class="h2">State:</h2> <p class="p1"> @Model.ridestate</p><br>
+    <h2 class="h2">Description:</h2> <p class="p1"> @Model.ridedesc</p><br>
+    <h2 class="h2"> Download KML file:</h2> <a id="infolink" href="@Model.kml_url">HERE</a><br>
+      @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
+        {
+            <a asp-action="edit" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-warning">Edit this ride</a>
+            <a asp-action="destroy" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-danger">DELETE this ride</a>
+        }
+  </div>
+    <div id="capturediv">
+        <p1>Waypoint Information in KML file:</p1>
+          <div id="capturecontainer">
+              <div id="capture"></div>
+          </div>
+    </div>
 </div>
-<h2>WHERE: @Model.ridecity, @Model.ridestate</h2>
-<h2>Description: @Model.ridedesc</h2>
 
 
-<div>
+
+<div id="commentdiv">
     <h6>Comments:</h6>
     @if (@Model.comments.Count == 0)
       {
-        <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning">Be the first to leave a comment</a>
+        <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="commentbutton">Be the first to leave a comment</a>
       }
       else {
-          <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="btn btn-warning" id="commentbutton">Leave a comment</a>
+        <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="commentbutton">Leave a comment</a>
+        <br>
           @foreach (var r in @Model.comments)
           {
-            <div class="commentdiv">
+            <div class="eachcomment">
                 <p>Comment: @r.commentcontent</p>
                 <p>Creator: @r.commentcreator</p>
                   @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
                   {
-                    <a asp-action="LogOut" asp-controller="Home" class="btn btn-warning">Delete</a>
+                    <a asp-action="destroycomment" asp-controller="ride" asp-route-commentId="@r.commentId" class="commentbutton">Delete</a>
                   }
             </div>
+            <div class="comment-triangle"></div>
           }
-
+        <a asp-action="newcomment" asp-controller="ride" asp-route-rideId="@Model.rideId" class="commentbutton">Leave a comment</a>
       }
 </div>
 
 
-
+<footer>
+    <div id="footerdiv">
+        <a href="#" class="w3-button w3-padding-large w3-margin-bottom FooterLink1"><i class="fa fa-arrow-up"></i> To the top <i class="fa fa-arrow-up"></i></a><br>
+    </div>
+</footer>
 
 
 <script>
@@ -106,7 +359,6 @@ float: left;
           preserveViewport: false,
           map: map
         });
-        
         kmlLayer.addListener('click', function(event) {
           var content = event.featureData.infoWindowHtml;
           var testimonial = document.getElementById('capture');
@@ -117,6 +369,45 @@ float: left;
         
         
 </script>
+
+<script> //Modal Scripts
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var btn2 = document.getElementById("myBtnsml");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+btn2.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+<script> // Nav bar drop down for small screens
+function myFunction() {
+  var x = document.getElementById("dropdown");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
 <script async defer src=@ViewBag.ApiKey></script>
 </body>
 </html>

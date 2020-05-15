@@ -1,4 +1,6 @@
-@model List<ride>
+@model ride
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,47 +8,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-
 </head>
 <style>
+
     #wrapper {
         width: 100%;
         margin: 0px;
+
     }
     body {
         background-color: #293241;
     }
     * {
-        @* outline: thin dotted pink; *@
+        outline: thin dotted pink;
         font-family: Arial, Helvetica, sans-serif;
+        vertical-align: top;
+
     }
     nav {
     color: #ebebe3;
     background-color: #293241;
     display: inline-block;
     width: 100%;
-  }
+    }
     #Header {
     font-size: 35pt;
-  }
-  #HeaderSub {
+    }
+    #HeaderSub {
     margin-top: -2%;
     padding: 1%;
-  }
-  #splashimgdiv {
-    height: auto;
+    }
 
-  }
-  #splashimg {
-      width: 100%;
-  }
-
-
-
-    /* The CONTACT Modal (background) */
+        /* The CONTACT Modal (background) */
     .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -81,27 +77,56 @@
     text-decoration: none;
     cursor: pointer;
     }
-    #maintablecontainer {
-        height: auto;
-        width: 90%;
-        margin-top: 5%;
-        margin-bottom: 5%;
-        margin-right: 5%;
-        margin-left: 5%;
-        background-color: #3d5a80;
-        padding: 5%;
-        border-radius: 10px;
-        border: 2px solid #e0fbfc;
+
+    #formdiv {
+    display: inline-block;
+    background-color: #3d5a80;
+    height: 320px;
+    overflow: auto;
+    padding: 3%;
+    width: 44%;
+    margin-left: 3%;
+    margin-right: 3%;
+    border: 2px solid #e0fbfc;
+    border-radius: 10px;
     }
-    #maintable {
-        background-color: #3d5a80;
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5 %;
+
+    #instructions {
+    display: inline-block;
+    background-color: #3d5a80;
+    height: 320px;
+    padding: 3%;
+    margin-right: 3%;
+    width: 44%;
+    border: 2px solid #e0fbfc;
+    border-radius: 10px;
     }
-    #maintable th, td {
-        color: whitesmoke;
-        text-align: center;
+
+    #links {
+    display: block;
+    background-color: #3d5a80;
+    height: auto;
+    padding: 3%;
+    width: 90%;
+    margin: 5%;
+    margin-top: 1%;
+    border: 2px solid #e0fbfc;
+    border-radius: 10px;
+    }
+    #label {
+        display: inline-block;
+    }
+    #label label {
+        margin: 1%;
+        height: 20%;
+    }
+    #input {
+        display: inline;
+        float: right;
+    }
+    #input input {
+        margin: 1%;
+        height: 20%;
     }
 
     .createbutton {
@@ -124,8 +149,7 @@
       background-color: #e0fbfc;
       color: #293241;
     }
-
-    #footerdiv {
+        #footerdiv {
         color: whitesmoke;
     }
     .FooterLink1 {
@@ -137,14 +161,8 @@
         width: 200px;
         text-align: center;
     }
-
-
-
 </style>
 <body>
-    
-
-    
 <div id="wrapper">
     <nav>
         <div class="w3-bar">
@@ -163,11 +181,8 @@
             <a href="#" id="myBtnsml" class="w3-bar-item w3-button NavLink">Contact</a>
         </div>
     </nav>
-    <div id="splashimgdiv">
-        <img id="splashimg" alt="motorcycles" src="https://www.dropbox.com/s/944sqf5oma9x7n5/spashimgroad.jpg?raw=1">
-    </div>
 
-    <!-- The Modal -->
+        <!-- The Modal -->
     <div id="myModal" class="modal">
 
     <!-- Modal content -->
@@ -183,51 +198,39 @@
             </div>
         </div>
     </div>
+    <div id="formdiv">
+    <h1>Create Ride</h1>
+        <form method="post" asp-action="Create" asp-controller="ride">
+            <div id="label">
+                <label asp-for="ridename"></label><br>
+                <label asp-for="kml_url"></label><br>
+                <label asp-for="ridedesc"></label><br>
+                <label asp-for="ridecity"></label><br>
+                <label asp-for="ridestate"></label><br>
+            </div>
+            <div id="input">
+                <input asp-for="ridename"><br>
+                <input asp-for="kml_url"><br>
+                <input asp-for="ridedesc"><br>
+                <input asp-for="ridecity"><br>
+                <input asp-for="ridestate">
 
-<div id="maintablecontainer">
-    <div id="maintable">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                <th>Name</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Comment #</th>
-                <th>KML Link</th>
-                    @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-                    {
-                <th>Action</th>
-                    }
-                
-                @* <th>Map</th>     //Future plans to implement map preview*@
-
-                
-                </tr>
-                
-            </thead>
-            <tbody>
-                @foreach(var w in @Model)
-                {
-                    <tr>
-                        <td><a asp-action="Show" asp-controller="ride" asp-route-rideId="@w.rideId"> @w.ridename</a></td>
-                        <td>@w.ridecity</td>
-                        <td>@w.ridestate</td>
-                        <td>@w.comments.Count</td>
-                        <td><a href="@w.kml_url">Download</a></td>
-                            @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-                                {
-                                    <td><a asp-action="destroy" asp-controller="ride" asp-route-rideId="@w.rideId">DELETE</a></td>
-                                }
-                    </tr>
-                }
-            </tbody>
-        </table>
+            </div>
+                <input type="submit" value="SUBMIT ride" class="createbutton">
+        </form>
+        <div asp-validation-summary="All" class="text-danger"></div>
     </div>
-</div>
+
+    <div id="instructions">
+        <p>Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions Instructions </p>
+    </div>
+
+    <div id="links">
+        <p>Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links </p>
+        <p>Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links Links </p>
+    </div>
 
 
-
-    <a class="createbutton" asp-action="New" asp-controller="ride">Create ride</a>
 
 <footer>
     <div id="footerdiv">
@@ -236,8 +239,8 @@
 </footer>
 
 </div>
-    <script async defer src=@ViewBag.ApiKey></script>
-    <script> //Modal Scripts
+<script>
+//Modal Scripts
 // Get the modal
 var modal = document.getElementById("myModal");
 // Get the button that opens the modal
@@ -263,6 +266,7 @@ window.onclick = function(event) {
   }
 }
 </script>
+
 <script> // Nav bar drop down for small screens
 function myFunction() {
   var x = document.getElementById("dropdown");

@@ -43,8 +43,8 @@ namespace motoroutes.Controllers
             }
         }
 
-        [HttpGet("new")]
-        public IActionResult New()
+        [HttpGet("newinfo")]
+        public IActionResult newinfo()
         {
                 return View();
         }
@@ -120,6 +120,15 @@ namespace motoroutes.Controllers
         {
                 ride remove = dbContext.rides.FirstOrDefault(w => w.rideId == rideId);
                 dbContext.rides.Remove(remove);
+                dbContext.SaveChanges();
+                return RedirectToAction("Dashboard");
+        }
+
+        [HttpGet("destroycomment/{commentId}")]
+        public IActionResult DestroyComment (int commentId)
+        {
+                comment remove = dbContext.comments.FirstOrDefault(w => w.commentId == commentId);
+                dbContext.comments.Remove(remove);
                 dbContext.SaveChanges();
                 return RedirectToAction("Dashboard");
         }

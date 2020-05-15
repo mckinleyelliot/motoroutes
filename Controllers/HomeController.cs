@@ -22,8 +22,10 @@ namespace motoroutes.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Dashboard", "ride");
         }
+
+
 
         [HttpGet("signin")]
         public IActionResult SignIn()
