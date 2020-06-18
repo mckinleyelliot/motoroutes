@@ -194,14 +194,7 @@
                 <th>State</th>
                 <th>Comment #</th>
                 <th>KML Link</th>
-                    @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-                    {
-                <th>Action</th>
-                    }
-                
-                @* <th>Map</th>     //Future plans to implement map preview*@
 
-                
                 </tr>
                 
             </thead>
@@ -214,10 +207,6 @@
                         <td>@w.ridestate</td>
                         <td>@w.comments.Count</td>
                         <td><a href="@w.kml_url">Download</a></td>
-                            @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-                                {
-                                    <td><a asp-action="destroy" asp-controller="ride" asp-route-rideId="@w.rideId">DELETE</a></td>
-                                }
                     </tr>
                 }
             </tbody>
