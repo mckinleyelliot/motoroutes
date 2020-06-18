@@ -249,23 +249,23 @@
 </style>
 <body>
 
-<nav>
-    <div class="w3-bar">
-        <span id="Header" class="w3-bar-item  w3-padding-14">RouteShare</span>
-        <a href="#" id="myBtn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Contact</a>
-        <a style="text-decoration: line-through" asp-action="SignIn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink" asp-controller="Home">LogIn</a>
-        <a asp-action="Info" asp-controller="home" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Info</a>
-        <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Home</a>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-padding-16 NavLink" onclick="myFunction()">&#9776;</a>
-    </div>
-        <div id="HeaderSub">A simple web app to share/view KML files</div>
-    <div id="dropdown" class="w3-bar-block w3-hide w3-hide-large NavLink">
-        <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button NavLink">Home</a>
-        <a asp-action="Info" asp-controller="home" class="w3-bar-item w3-button NavLink">Info</a>
-        <a asp-action="SignIn" class="w3-bar-item w3-button NavLink" asp-controller="Home" style="text-decoration: line-through">LogIn</a>
-        <a href="#" id="myBtnsml" class="w3-bar-item w3-button NavLink">Contact</a>
-    </div>
-</nav>
+  <nav>
+      <div class="w3-bar">
+          <span id="Header" class="w3-bar-item  w3-padding-14">RouteShare</span>
+          <a href="#" id="myBtn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Contact</a>
+          <a style="text-decoration: line-through" asp-action="SignIn" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink" asp-controller="Home">LogIn</a>
+          <a asp-action="newinfo" asp-controller="ride" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Info/Create</a>
+          <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button w3-right w3-hide-small w3-hide-medium w3-padding-16 NavLink">Home</a>
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-padding-16 NavLink" onclick="myFunction()">&#9776;</a>
+      </div>
+          <div id="HeaderSub">A simple web app to share/view KML files</div>
+      <div id="dropdown" class="w3-bar-block w3-hide w3-hide-large NavLink">
+          <a asp-action="Dashboard" asp-controller="ride" class="w3-bar-item w3-button NavLink">Home</a>
+          <a asp-action="newinfo" asp-controller="ride" class="w3-bar-item w3-button NavLink">Info/Create</a>
+          <a asp-action="SignIn" class="w3-bar-item w3-button NavLink" asp-controller="Home" style="text-decoration: line-through">LogIn</a>
+          <a href="#" id="myBtnsml" class="w3-bar-item w3-button NavLink">Contact</a>
+      </div>
+  </nav>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -299,11 +299,7 @@
     <h2 class="h2">State:</h2> <p class="p1"> @Model.ridestate</p><br>
     <h2 class="h2">Description:</h2> <p class="p1"> @Model.ridedesc</p><br>
     <h2 class="h2"> Download KML file:</h2> <a id="infolink" href="@Model.kml_url">HERE</a><br>
-      @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-        {
-            <a asp-action="edit" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-warning">Edit this ride</a>
-            <a asp-action="destroy" asp-controller="ride" asp-route-rideId="@Model.rideId"class="btn btn-danger">DELETE this ride</a>
-        }
+
   </div>
     <div id="capturediv">
         <p1>Waypoint Information in KML file:</p1>
@@ -329,10 +325,7 @@
             <div class="eachcomment">
                 <p>Comment: @r.commentcontent</p>
                 <p>Creator: @r.commentcreator</p>
-                  @if (ViewBag.User.Email  == "mckinleyelliot@gmail.com" )
-                  {
-                    <a asp-action="destroycomment" asp-controller="ride" asp-route-commentId="@r.commentId" class="commentbutton">Delete</a>
-                  }
+
             </div>
             <div class="comment-triangle"></div>
           }
@@ -348,7 +341,7 @@
 </footer>
 
 
-<script>
+<script async defer >
     var src = '@Model.kml_url';
     function myMap() {  
         var map = new google.maps.Map(document.getElementById('map'), {

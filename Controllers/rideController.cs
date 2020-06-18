@@ -24,23 +24,9 @@ namespace motoroutes.Controllers
         [HttpGet("")]
         public IActionResult Dashboard()
         {
-                if(HttpContext.Session.GetString("UserEmail") == null)
-            {   
-                HttpContext.Session.SetString("UserEmail", "temp@gmail.com");
-                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                ViewBag.User = userInDb;
                 List<ride> allrides = dbContext.rides.Include( w => w.comments).ToList();
                 ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
                 return View(allrides);
-            }
-            else 
-            {
-                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                ViewBag.User = userInDb;
-                List<ride> allrides = dbContext.rides.Include( w => w.comments).ToList();
-                ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
-                return View(allrides);
-            }
         }
 
         [HttpGet("newinfo")]
@@ -62,7 +48,7 @@ namespace motoroutes.Controllers
                 }
                 else
                 {
-                    return View("New");
+                    return View("NewInfo");
                 }
         }
 
@@ -95,23 +81,9 @@ namespace motoroutes.Controllers
         [HttpGet("show/{rideId}")]
         public IActionResult Show(int rideId)
         {
-                if(HttpContext.Session.GetString("UserEmail") == null)
-            {  
-                HttpContext.Session.SetString("UserEmail", "temp@gmail.com");
-                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                ViewBag.User = userInDb;
                 ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
                 ride rideinfo = dbContext.rides.Include( w => w.comments ).FirstOrDefault (w => w.rideId == rideId);
                 return View(rideinfo);
-            }
-            else 
-            {
-                User userInDb = dbContext.Users.FirstOrDefault( u => u.Email == HttpContext.Session.GetString("UserEmail"));
-                ViewBag.User = userInDb;
-                ViewBag.ApiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDr42YUsPp9WhD8eoNWXJBpS85Epc0F-xw&callback=myMap";
-                ride rideinfo = dbContext.rides.Include( w => w.comments ).FirstOrDefault (w => w.rideId == rideId);
-                return View(rideinfo);
-            }
         }
 
 
