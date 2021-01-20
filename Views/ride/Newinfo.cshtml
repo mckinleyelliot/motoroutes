@@ -176,10 +176,12 @@
         border-radius: 15px;
         color: whitesmoke; 
         background-color: #ee6c4d;
+        text-decoration: line-through;
     }
     .createbutton:hover {
       background-color: #e0fbfc;
       color: #293241;
+      text-decoration: line-through;
     }
         #footerdiv {
         color: whitesmoke;
@@ -233,7 +235,8 @@
 
     <div id="formdiv">
     <p id="formhead">Create New Route</p>
-        <form method="post" asp-action="Create" asp-controller="ride">
+        @* <form method="post" asp-action="Create" asp-controller="ride"> *@
+            <form>
             <div id="label">
                 <label asp-for="ridename"></label>
                 <input class="input" asp-for="ridename"><br>
@@ -262,6 +265,9 @@
             <li>Host your KML file on Google Drive, and make this shareable as well.</li>
             <li>Use this <a href="http://kolorobot.github.io/permalink/">Export Link tool</a> to find the export link for your KML file - use that URL here!</li>
         </ol>
+        <ul>
+            <li>Note: "Create New Route" is disabled for this demo</li>
+        </ul>
     </div>
 
     <div id="links">
